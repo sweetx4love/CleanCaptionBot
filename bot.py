@@ -8,7 +8,7 @@ URL_REGEX = r'(https?://[^\s]+)'
 
 # /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("✅ এখন বট শুধু লিংক রেখে রিপোস্ট করবে এবং মূল পোস্ট ডিলিট করবে।")
+    await update.message.reply_text("Welcome")
 
 # চ্যানেল পোস্ট হ্যান্ডলার
 async def handle_channel_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
