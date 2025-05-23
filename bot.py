@@ -17,7 +17,8 @@ async def handle_channel_post(update: Update, context: ContextTypes.DEFAULT_TYPE
 
     # যদি ক্যাপশন থাকে
     if caption:
-        links = re.findall(URL_REGEX, caption)
+        # ডুপ্লিকেট লিংক বাদ দিয়ে শুধু ইউনিক লিংক রাখছে
+        links = list(dict.fromkeys(re.findall(URL_REGEX, caption)))
 
         if links:
             link_only = "\n".join(links)
