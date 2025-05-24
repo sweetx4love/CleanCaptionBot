@@ -24,7 +24,7 @@ async def handle_channel_post(update: Update, context: ContextTypes.DEFAULT_TYPE
         
         if links:
             # প্রতিটি লিংকের পর একটি খালি লাইন যোগ করুন
-            formatted_links = [f"Link-{i+1}: {link}\n" for i, link in enumerate(links)]
+            formatted_links = [f" {link}\n" for i, link in enumerate(links)]
             reply_text = "\n".join(formatted_links)  # লিংকগুলোকে আলাদা লাইনে দেখাবে
             
             # মিডিয়া থাকলে রিপোস্ট করুন
