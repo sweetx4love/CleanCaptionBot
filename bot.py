@@ -20,29 +20,33 @@ async def handle_channel_post(update: Update, context: ContextTypes.DEFAULT_TYPE
     caption = post.caption
 
     if caption:
-        links = list(dict.fromkeys(re.findall(URL_REGEX, caption)))
+        links = list(dict.fromkeys(re.findall(URL_REGEX, caption)))  # ইউনিক লিংক
         
         if links:
-            formatted_links = [f"লিংক-{i+1}: {link}" for i, link in enumerate(links)]
-            reply_text = "\n".join(formatted_links)
-
+            # প্রতিটি লিংকের পর একটি খালি লাইন যোগ করুন
+            formatted_links = [f"লিংক-{i+1}: {link}\n" for i, link in enumerate(links)]
+            reply_text = "\n".join(formatted_links)  # লিংকগুলোকে আলাদা লাইনে দেখাবে
+            
+            # মিডিয়া থাকলে রিপোস্ট করুন
             if post.photo:
                 file_id = post.photo[-1].file_id
                 await context.bot.send_photo(
                     chat_id=post.chat_id,
                     photo=file_id,
-                    caption=reply_text
+                    caption=reply_text.strip()  # strip() দিয়ে অপ্রয়োজনীয় স্পেস ট্রিম করুন
                 )
             elif post.video:
                 file_id = post.video.file_id
                 await context.bot.send_video(
                     chat_id=post.chat_id,
                     video=file_id,
-                    caption=reply_text
+                    caption=reply_text.strip()
                 )
             else:
-                await post.reply_text(reply_text)
+                # শুধু টেক্সট মেসেজ হলে রিপ্লাই দিন
+                await post.reply_text(reply_text.strip())
 
+    # মূল মেসেজ ডিলিট করুন (ঐচ্ছিক)
     try:
         await context.bot.delete_message(chat_id=post.chat_id, message_id=post.message_id)
     except Exception as e:
