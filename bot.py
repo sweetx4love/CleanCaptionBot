@@ -9,7 +9,7 @@ from telegram.ext import (
 import re
 import os
 
-TOKEN = os.getenv("TOKEN") or "YOUR_BOT_TOKEN_HERE"
+TOKEN = os.getenv("TOKEN") or "8038725738:AAFPDz9AlbUvJrVHWU-k_fuE3ZEHlyENf2U"
 URL_REGEX = r'(https?://[^\s]+)'
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
