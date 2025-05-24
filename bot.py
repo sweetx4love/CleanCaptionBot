@@ -13,7 +13,7 @@ TOKEN = os.getenv("TOKEN") or "YOUR_BOT_TOKEN_HERE"
 URL_REGEX = r'(https?://[^\s]+)'
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await update.message.reply_text("Welcome")
+    await update.message.reply_text("Send")
 
 async def handle_channel_post(update: Update, context: ContextTypes.DEFAULT_TYPE):
     post = update.channel_post
